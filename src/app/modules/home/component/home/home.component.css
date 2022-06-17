@@ -1,0 +1,37 @@
+.py-5{
+    background-color: #E2F1AF;
+}
+.oferta{
+    background-color: purple;
+}
+.btn-outline-dark {
+    color: #169873;
+    border-color: #169873;
+}
+
+.btn-outline-dark:hover {
+    color: #fff;
+    background-color: #169873;
+    border-color: #169873;
+}
+
+img {
+    width: auto;
+}
+
+.alinea {
+    padding: auto;
+    margin: 10px;
+}
+
+.btn-nombre {
+    text-decoration: none;
+}
+
+.btn-nombre:hover{
+    cursor: pointer;
+}
+
+.img-h:hover{
+    cursor: pointer;
+}

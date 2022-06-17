@@ -1,0 +1,13 @@
+.img{
+    width: 250px;
+    height: 45px;
+}
+
+#navbarCart{
+    color: rgba(221, 160, 221, 0.712);
+    margin-right: 40px;
+}
+
+#navbarCart:hover{
+    color: white;
+}

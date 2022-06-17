@@ -1,0 +1,94 @@
+<div class="container-fluid">
+    <!-- Header  -->
+    <div class="card-header">
+        <h3>
+            <i class="fas fa-th-large"></i>&nbsp;&nbsp;Carrito
+        </h3>
+    </div>
+
+    <!-- Body  -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Cantidad</th>
+                        <th class="text-center">Producto</th>
+                        <th class="text-center">Precio Unitario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cart of carrito">
+                        <td class="text-center">{{ cart.quantity }}</td>
+                        <td class="text-center">{{ cart.product.product }}</td>
+                        <td class="text-center">${{ cart.product.price }}
+                        </td>
+                        <td class="text-center">
+                            <button  (click)="deleteProductFromCart(cart.id_cart)" type="button" class="btn btn-danger btn-sm">
+                                Eliminar 
+                                <i class="fas fa-trash"></i> 
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container-fluid compra">
+        <h4 class="text-right" style="text-align: right;">Subtotal: ${{subtotal}}&nbsp;&nbsp;
+        </h4>
+        <h4 class="text-right" style="text-align: right;">Total: ${{total}}&nbsp;&nbsp;
+        </h4> 
+        <button (click)="muestraPago()" type="button" class="btn btn-outline-success" style="float: right">Finalizar compra</button>      
+        <br>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-right"> 
+                    <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+                        <i class="fa fa-close close" data-dismiss="modal"></i>
+                    </button>
+                 </div>
+                <div class="tabs mt-3">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation"> 
+                             <img src="https://i.imgur.com/sB4jftM.png" width="80">
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
+                            <div class="mt-4 mx-4">
+                                <div class="text-center">
+                                    <h5>Tarjeta de Crédito</h5>
+                                </div>
+                                <div class="form mt-3">
+                                    <div class="inputbox"> <input id="titular" type="text" name="name" class="form-control" required="required"> <span id="campoTitular">Nombre del Titular</span> </div>
+                                    <div class="inputbox"> 
+                                        <input type="number" id="txt_cardNumber" maxlength="16" name="txt_cardNumber" class="form-control" required="required" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                        <span id="campoCardNumber">Número de tarjeta</span> </div>
+                                    <div class="d-flex flex-row">
+                                        <div class="inputbox"> <input id="expDate" type="number" name="name" maxlength="4" class="form-control" required="required" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <span id="campoExpDate" >Fecha de expiración</span> </div>
+                                        <div class="inputbox"> <input id="cvv" type="number" name="name" maxlength="3" min="1" max="999" class="form-control" required="required" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <span id="campoCVV">CVV</span> </div>
+                                    </div>
+                                    <div class="px-5 pay"> <button (click)="pagar()" class="btn btn-success btn-block">Pagar</button> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="paypal" role="tabpanel" aria-labelledby="paypal-tab">
+                            <div class="px-5 mt-5">
+                                <div class="inputbox"> <input type="text" name="name" class="form-control" required="required"> <span>Paypal Email Address</span> </div>
+                                <div class="pay px-5"> <button class="btn btn-primary btn-block">Add paypal</button> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <!-- Header  -->
+    <div class="card-header">
+        <h3>
+            <i class="fas fa-globe-americas"></i>&nbsp;&nbsp;Regiones
+            <button (click)="createRegion()" style="float: right" type="button" class="btn btn-success btn-sm">
+                Agregar Región
+                <i class="fas fa-plus"></i>
+            </button>
+        </h3>
+    </div>
+
+    <!-- Body  -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Región</th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let region of regions">
+                        <td class="text-center">{{ region.region }}</td>
+                        <td>
+                            <button (click)="updateRegion(region)"  type="button" class="btn btn-primary btn-sm">
+                                Actualizar 
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            &nbsp;&nbsp;
+                            <button (click)="deleteRegion(region.id_region)"  type="button" class="btn btn-danger btn-sm">
+                                Eliminar 
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="card-footer text-center">
+        <button (click)="getRegions()" type="button" style="color:#fff;" class="btn btn-info ">
+            Actualizar Lista
+            <i class="fas fa-sync-alt"></i>
+        </button>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="region_modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Región</h5>
+          <button (click)="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="rate">Ingresa el nombre de la Región <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control marginForm" id="region" formControlName="region" placeholder="Región...">
+                  <div *ngIf="submitted && f.region.errors">
+                    <div *ngIf="f.region.errors.required">
+                        <span class="text-danger">El nombre de la región es obligatorio</span>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                    <br>
+                    <p class="text-right"><span class="text-danger">*</span>Campos obligatorios</p>
+                    <button type="submit" id="btn-reg" class="btn btn-success btn-block">Registrar</button>
+                </div>
+              </form>
+        </div>
+
+        <div class="modal-footer">
+          <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>

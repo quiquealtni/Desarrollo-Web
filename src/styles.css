@@ -1,0 +1,17 @@
+.hd-ft{
+  background-color: purple;
+}
+
+.container-fluid{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.marginForm{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.btn-block{
+  width: 100%;
+}

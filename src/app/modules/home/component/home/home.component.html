@@ -1,0 +1,96 @@
+<label class="cat alinea" for="rate">Selecciona una Categoría:</label>
+<br>
+<div class="cat alinea d-inline-flex">
+    <select class="cat form-control" formControlName="id_category" id="id_category" (change)="muestraCategoria($any($event.target).value)">
+        <option [value]=0>Todos los productos</option>
+        <option  *ngFor="let category of categories" [value]="category.id_category">{{ category.category }}</option>
+    </select>
+</div>
+
+<div class="btn-back d-inline-flex">
+    <button class = "alinea btn btn-light btn-back" (click)="muestra()">
+        <i class="fas fa-arrow-left"></i>
+        Atras
+    </button>
+</div>
+
+<section class="py-5" >
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div *ngFor="let product of rproducts" class="col mb-5">
+                <div  class="card h-100">
+                    <!-- Product image-->
+                    <a class="img-h card img-top" routerLink="" (click)="productDetail(product.product,product.images,product.price,product.gtin)">                   
+                      <img *ngIf="product.images.length!=0; else noFoto" class="card-img-top" src="assets/{{product.images[0].image}}" alt="..." />  
+                      <ng-template #noFoto>
+                        <img class="card-img-top" src="assets/no-photo.png" alt="..." /> 
+                      </ng-template>
+                    </a>                       
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <a class="btn-nombre link" routerLink="" (click)="productDetail(product.product,product.images,product.price,product.gtin)">
+                                <h5 class="fw-bolder">{{ product.product}}</h5>
+                            </a>
+                            <!-- Product price-->
+                           ${{ product.price }}
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-agrega btn-outline-dark mt-auto" (click)="productDetail(product.product,product.images,product.price,product.gtin)">Ver detalles</a></div>
+                    </div>
+                </div>
+            </div>   
+        </div>  
+    </div>
+</section>
+
+<section class="product-detail mb-5">
+    <div class="row">
+      <div class="col-md-6 mb-4 mb-md-0">
+  
+        <div id="mdb-lightbox-ui"></div>
+  
+        <div class="mdb-lightbox">
+  
+          <div class="row product-gallery mx-1">
+  
+            <div class="col-12 mb-0">
+                <figure class="view overlay rounded z-depth-1 main-img">
+                      <img src="assets/{{rutaImg}}"
+                        class="img-fluid z-depth-1">
+                  </figure>
+            </div>
+    
+          </div>
+        </div>
+  
+      </div>
+      <div class="col-md-6">
+  
+        <h5>{{nombreProducto}}</h5>
+        <p class="mb-2 text-muted text-uppercase small">{{categoria}}</p>
+        <p><span class="mr-1"><strong>${{precioProducto}}</strong></span></p>
+        <p class="pt-1">{{descripcion}}</p>
+        <div class="table-responsive">
+          <table class="table table-sm table-borderless mb-0">
+            <tbody>
+              <tr>
+                <th class="pl-0 w-25" scope="row"><strong>GTIN</strong></th>
+                <td>{{gtin}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <hr>
+        Cantidad:&nbsp;
+        <input id="cantidad" type="number" name="quantity" min="1" max="20" value="1" onKeyDown="return false">
+        &nbsp;
+        <button (click)="addToCart()" type="button" class="btn btn-light btn-md mr-1 mb-2"><i
+            class="fas fa-shopping-cart pr-2"></i> Añadir al carrito</button>
+      </div>
+    </div>
+  
+  </section>
